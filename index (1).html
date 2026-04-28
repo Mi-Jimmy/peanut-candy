@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蔡記麥芽花生糖 — 大溪首創・飄香半世紀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ════════════════════════════════
+       1. CSS Variables (Base)
+    ════════════════════════════════ */
+    :root {
+      --color-bg:        #FAF8F3;
+      --color-surface:   #F2EDE4;
+      --color-border:    #DDD5C8;
+      --color-text:      #2C2417;
+      --color-text-sub:  #7A6E62;
+      --color-accent:    #B5703A;
+      --color-accent-lt: #D4956A;
+      --color-white:     #FFFFFF;
+      --font-display:    'Shippori Mincho', 'Noto Serif TC', serif;
+      --font-body:       'Zen Kaku Gothic New', 'Noto Sans TC', sans-serif;
+      --font-en:         'Cormorant Garamond', serif;
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  2rem;
+      --space-lg:  4rem;
+      --space-xl:  8rem;
+      --container: 1100px;
+      --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --duration:    0.4s;
+    }
+
+    /* ════════════════════════════════
+       2. Reset & Base
+    ════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      padding-top: 64px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--space-md); }
+    .section { padding: var(--space-xl) 0; }
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      line-height: 1.3;
+      color: var(--color-text);
+    }
+    .section-desc {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--color-text-sub);
+      letter-spacing: 0.05em;
+      max-width: 520px;
+      margin-top: var(--space-sm);
+    }
+    .divider { width: 40px; height: 1px; background: var(--color-accent); margin: var(--space-sm) 0; }
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--duration) var(--ease-smooth);
+    }
+    .btn:hover { background: var(--color-accent); color: var(--color-white); }
+    .btn-fill { background: var(--color-accent); color: var(--color-white); }
+    .btn-fill:hover { background: var(--color-accent-lt); border-color: var(--color-accent-lt); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeUp 0.8s var(--ease-smooth) both; }
+    .fade-in-delay-1 { animation-delay: 0.15s; }
+    .fade-in-delay-2 { animation-delay: 0.30s; }
+    .fade-in-delay-3 { animation-delay: 0.45s; }
+
+    /* ════════════════════════════════
+       3. Nav
+    ════════════════════════════════ */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 248, 243, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      height: 64px;
+    }
+    .nav-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand { display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; color: var(--color-text); }
+    .brand-ja { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; letter-spacing: 0.15em; }
+    .brand-sub { font-family: var(--font-en); font-size: 0.65rem; letter-spacing: 0.25em; color: var(--color-text-sub); }
+    .nav-links { display: flex; gap: var(--space-md); list-style: none; }
+    .nav-links a { font-family: var(--font-body); font-size: 0.875rem; font-weight: 300; letter-spacing: 0.1em; color: var(--color-text-sub); text-decoration: none; transition: color var(--duration) var(--ease-smooth); }
+    .nav-links a:hover { color: var(--color-accent); }
+    .nav-right { display: flex; align-items: center; gap: var(--space-sm); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.25rem; color: var(--color-text); }
+
+    /* ── Nav 購物車圖示 ── */
+    .cart-trigger {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text-sub);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      transition: color var(--duration) var(--ease-smooth);
+    }
+    .cart-trigger:hover { color: var(--color-accent); }
+    .cart-badge {
+      position: absolute;
+      top: -4px; right: -6px;
+      min-width: 18px; height: 18px;
+      border-radius: 999px;
+      background: var(--color-accent);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      line-height: 1;
+      transition: transform 0.2s var(--ease-smooth);
+    }
+    .cart-badge.bump { animation: badgeBump 0.3s var(--ease-smooth); }
+    @keyframes badgeBump {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+    }
+
+    /* ════════════════════════════════
+       4. Hero
+    ════════════════════════════════ */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(181,112,58,0.08) 0%, transparent 70%), var(--color-bg);
+    }
+    .hero-texture {
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(181,112,58,0.03) 40px, rgba(181,112,58,0.03) 41px);
+    }
+    .hero-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+    .hero-content { flex: 1; max-width: 560px; }
+    .hero-label { font-family: var(--font-en); font-size: 0.8rem; letter-spacing: 0.3em; color: var(--color-accent); text-transform: uppercase; margin-bottom: var(--space-sm); }
+    .hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 500; letter-spacing: 0.12em; line-height: 1.1; color: var(--color-text); }
+    .hero-divider { width: 48px; height: 1px; background: var(--color-accent); margin: var(--space-md) 0; }
+    .hero-slogan { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.2em; color: var(--color-text-sub); margin-bottom: var(--space-sm); }
+    .hero-desc { font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; letter-spacing: 0.08em; color: var(--color-text-sub); margin-bottom: var(--space-lg); line-height: 1.8; }
+    .hero-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+    .hero-badge { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 110px; height: 110px; border-radius: 50%; border: 1.5px solid var(--color-accent); background: rgba(181,112,58,0.06); flex-shrink: 0; }
+    .badge-main { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-accent); }
+    .badge-sub { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; color: var(--color-text-sub); margin-top: 2px; }
+    .hero-scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+    .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--color-accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; text-align: center; padding-top: var(--space-lg); }
+      .hero-divider { margin: var(--space-md) auto; }
+      .hero-actions { justify-content: center; }
+      .hero-badge { width: 88px; height: 88px; }
+      .badge-main { font-size: 1.3rem; }
+    }
+
+    /* ════════════════════════════════
+       5. Brand Story (Hero skill)
+    ════════════════════════════════ */
+    .about-story { background: var(--color-surface); }
+    .story-grid { display: grid; grid-template-columns: 1fr 380px; gap: var(--space-xl); align-items: start; }
+    .story-paragraphs { margin-top: var(--space-md); }
+    .story-paragraphs p { font-family: var(--font-body); font-size: 0.9375rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.05em; line-height: 1.9; margin-bottom: var(--space-sm); }
+    .story-stats { background: var(--color-bg); border: 1px solid var(--color-border); padding: var(--space-lg) var(--space-md); display: flex; flex-direction: column; gap: 0; }
+    .stat-item { padding: var(--space-md) 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+    .stat-num { font-family: var(--font-en); font-size: 2.5rem; font-weight: 300; color: var(--color-accent); line-height: 1; letter-spacing: 0.05em; }
+    .stat-unit { font-size: 1.5rem; vertical-align: super; }
+    .stat-label { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.12em; color: var(--color-text-sub); }
+    .stat-divider { width: 100%; height: 1px; background: var(--color-border); }
+    .stat-tag { display: inline-block; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-accent); border: 1px solid var(--color-accent); padding: 3px 10px; margin: 3px 4px; }
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .story-stats { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: var(--space-md); }
+      .stat-item { width: 45%; }
+      .stat-divider { display: none; }
+    }
+
+    /* ════════════════════════════════
+       6. Products
+    ════════════════════════════════ */
+    .products { background: var(--color-bg); }
+    .products-header { text-align: center; margin-bottom: var(--space-lg); }
+    .products-header .divider { margin: var(--space-sm) auto; }
+    .products-header .section-desc { margin: 0 auto; text-align: center; }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .product-card { background: var(--color-surface); border: 0.5px solid var(--color-border); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s cubic-bezier(0.25,0.46,0.45,0.94); cursor: default; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(44,36,23,0.08); }
+    .card-featured { grid-column: 1 / -1; flex-direction: row; }
+    .card-featured .product-img-wrap { width: 45%; flex-shrink: 0; }
+    .card-featured .product-img { height: 100%; min-height: 220px; }
+    .card-featured .product-info { padding: var(--space-lg) var(--space-md); display: flex; flex-direction: column; justify-content: space-between; }
+    .card-featured .product-name { font-size: 1.75rem; }
+    .card-featured .product-desc { font-size: 0.9rem; max-width: 380px; margin-top: var(--space-sm); margin-bottom: 0; }
+    .product-img-wrap { position: relative; overflow: hidden; cursor: crosshair; }
+    .product-img { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; transition: none; }
+    .magnifier-lens { position: absolute; width: 90px; height: 90px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.85); box-shadow: 0 4px 20px rgba(0,0,0,0.18); pointer-events: none; opacity: 0; transition: opacity 0.15s; overflow: hidden; z-index: 10; transform: translate(-50%, -50%); }
+    .magnifier-lens.active { opacity: 1; }
+    .magnifier-lens .lens-content { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 7rem; transform-origin: center center; }
+    .product-img--maltcandy   { background: #EDD9B8; }
+    .product-img--peanut      { background: #E8CFA0; }
+    .product-img--tribute     { background: #E5E0D6; }
+    .product-img--peanutcrisp { background: #E0C89A; }
+    .product-img--sesamecrisp { background: #C8C4BB; }
+    .product-img--sesamecandy { background: #B8B4AC; }
+    .product-img--maltcandy::after   { content: "🥜"; }
+    .product-img--peanut::after      { content: "🍯"; }
+    .product-img--tribute::after     { content: "🍡"; }
+    .product-img--peanutcrisp::after { content: "🫘"; }
+    .product-img--sesamecrisp::after { content: "⬛"; font-size: 2.5rem; }
+    .product-img--sesamecandy::after { content: "🖤"; }
+    .badge-popular { position: absolute; top: var(--space-sm); left: var(--space-sm); background: var(--color-accent); color: var(--color-white); font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.12em; padding: 4px 12px; }
+    .product-info { padding: var(--space-md) var(--space-sm); flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-sm); }
+    .product-name { font-family: var(--font-display); font-size: 1.125rem; font-weight: 500; letter-spacing: 0.12em; color: var(--color-text); }
+    .product-en { font-family: var(--font-en); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--color-text-sub); margin-top: 3px; font-style: italic; }
+    .product-desc { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.06em; line-height: 1.8; margin-top: var(--space-xs); margin-bottom: 0; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-sm); padding-top: var(--space-sm); border-top: 0.5px solid var(--color-border); }
+    .product-price { font-family: var(--font-body); font-size: 0.8rem; color: var(--color-text-sub); letter-spacing: 0.05em; }
+    .product-price strong { font-family: var(--font-en); font-size: 1.4rem; font-weight: 400; color: var(--color-accent); margin: 0 2px; }
+    .product-price em { font-style: normal; font-size: 0.72rem; color: var(--color-text-sub); }
+    .product-tag { font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--color-accent); border: 0.5px solid var(--color-accent); padding: 3px 8px; }
+    .products-note { margin-top: var(--space-lg); text-align: center; display: flex; align-items: center; justify-content: center; gap: var(--space-xs); }
+    .note-icon { color: var(--color-accent); font-size: 0.75rem; }
+    .products-note p { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; letter-spacing: 0.1em; color: var(--color-text-sub); }
+    /* 加入購物車按鈕 */
+    .btn-add-cart { font-family: var(--font-body); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; padding: 6px 14px; border: 0.5px solid var(--color-accent); color: var(--color-accent); background: transparent; cursor: pointer; white-space: nowrap; transition: all var(--duration) var(--ease-smooth); }
+    .btn-add-cart:hover { background: var(--color-accent); color: var(--color-white); }
+    .btn-add-cart.added { background: var(--color-accent); color: var(--color-white); pointer-events: none; }
+    @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2, 1fr); } .card-featured { grid-column: 1 / -1; } }
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .card-featured { flex-direction: column; }
+      .card-featured .product-img-wrap { width: 100%; }
+      .card-featured .product-img { min-height: 200px; }
+      .card-featured .product-info { padding: var(--space-md) var(--space-sm); }
+    }
+
+    /* ════════════════════════════════
+       7. About
+    ════════════════════════════════ */
+    .about { background: var(--color-surface); }
+    .about-header { margin-bottom: var(--space-lg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 320px; gap: var(--space-xl); align-items: start; margin-bottom: var(--space-xl); }
+    .about-lead { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; letter-spacing: 0.18em; color: var(--color-accent); margin-bottom: var(--space-md); }
+    .about-p { font-family: var(--font-body); font-size: 0.9375rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.05em; line-height: 1.95; margin-bottom: var(--space-sm); }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--space-md); }
+    .about-tag { font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-text-sub); border: 0.5px solid var(--color-border); padding: 4px 12px; transition: border-color var(--duration) var(--ease-smooth), color var(--duration) var(--ease-smooth); }
+    .about-tag:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px; background: var(--color-border); }
+    .tl-item { position: relative; margin-bottom: var(--space-md); padding-left: var(--space-sm); }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot { position: absolute; left: -1.5rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--color-border); background: var(--color-surface); }
+    .tl-dot--accent { border-color: var(--color-accent); background: var(--color-accent); }
+    .tl-year { font-family: var(--font-en); font-size: 1.1rem; font-weight: 300; color: var(--color-accent); letter-spacing: 0.08em; display: block; margin-bottom: 4px; }
+    .tl-text { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.05em; line-height: 1.7; }
+    .craft-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; border-top: 0.5px solid var(--color-border); padding-top: var(--space-lg); }
+    .craft-item { text-align: center; padding: var(--space-md); }
+    .craft-icon { font-family: var(--font-display); font-size: 2rem; font-weight: 500; color: var(--color-accent); width: 64px; height: 64px; border: 1px solid var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-sm); transition: background var(--duration) var(--ease-smooth), color var(--duration) var(--ease-smooth); }
+    .craft-item:hover .craft-icon { background: var(--color-accent); color: var(--color-white); }
+    .craft-title { font-family: var(--font-display); font-size: 1rem; font-weight: 500; letter-spacing: 0.15em; color: var(--color-text); margin-bottom: var(--space-xs); }
+    .craft-desc { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.05em; line-height: 1.8; }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .craft-grid { grid-template-columns: 1fr; }
+      .craft-item { padding: var(--space-sm) 0; }
+    }
+
+    /* ════════════════════════════════
+       8. Contact
+    ════════════════════════════════ */
+    .contact { background: var(--color-bg); }
+    .contact-header { margin-bottom: var(--space-lg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: stretch; margin-bottom: var(--space-lg); }
+    .contact-info { display: flex; flex-direction: column; gap: var(--space-md); padding: var(--space-lg); background: var(--color-surface); border: 0.5px solid var(--color-border); }
+    .info-block { display: flex; flex-direction: column; gap: 4px; padding-bottom: var(--space-md); border-bottom: 0.5px solid var(--color-border); }
+    .info-block:last-of-type { border-bottom: none; padding-bottom: 0; }
+    .info-label { font-family: var(--font-en); font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--color-accent); font-style: italic; }
+    .info-value { font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; color: var(--color-text); letter-spacing: 0.05em; line-height: 1.7; text-decoration: none; }
+    .info-value small { font-size: 0.75rem; color: var(--color-text-sub); letter-spacing: 0.08em; }
+    .info-link { color: var(--color-text); text-decoration: none; border-bottom: 0.5px solid transparent; transition: border-color var(--duration) var(--ease-smooth), color var(--duration) var(--ease-smooth); width: fit-content; }
+    .info-link:hover { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+    .social-row { display: flex; gap: var(--space-sm); margin-top: var(--space-xs); }
+    .social-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 0.78rem; font-weight: 300; letter-spacing: 0.1em; color: var(--color-text-sub); border: 0.5px solid var(--color-border); padding: 0.5rem 1rem; text-decoration: none; transition: border-color var(--duration) var(--ease-smooth), color var(--duration) var(--ease-smooth); }
+    .social-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .contact-map { min-height: 360px; border: 0.5px solid var(--color-border); overflow: hidden; }
+    .contact-map iframe { width: 100%; height: 100%; min-height: 360px; display: block; }
+    .contact-notice { border-top: 0.5px solid var(--color-border); padding-top: var(--space-md); display: flex; flex-direction: column; gap: var(--space-xs); }
+    .notice-item { display: flex; align-items: baseline; gap: var(--space-sm); }
+    .notice-icon { color: var(--color-accent); font-size: 0.65rem; flex-shrink: 0; }
+    .notice-item span:last-child { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.06em; line-height: 1.7; }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-map { min-height: 260px; }
+      .contact-map iframe { min-height: 260px; }
+      .social-row { flex-direction: column; }
+    }
+
+    /* ════════════════════════════════
+       9. Footer
+    ════════════════════════════════ */
+    .site-footer { background: var(--color-text); color: var(--color-surface); padding: var(--space-lg) var(--space-md); text-align: center; }
+    .footer-brand { margin-bottom: var(--space-sm); }
+    .footer-brand .brand-ja { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-white); letter-spacing: 0.2em; }
+    .footer-brand .brand-sub { display: block; font-family: var(--font-en); font-size: 0.7rem; letter-spacing: 0.3em; color: var(--color-border); margin-top: 4px; }
+    .footer-copy { font-family: var(--font-body); font-size: 0.75rem; color: var(--color-text-sub); margin: var(--space-sm) 0 0; }
+    .footer-tagline { font-family: var(--font-display); font-size: 0.875rem; color: var(--color-accent-lt); letter-spacing: 0.1em; margin-top: var(--space-xs); }
+
+    /* ════════════════════════════════
+       10. Cart Drawer
+    ════════════════════════════════ */
+    .cart-overlay { position: fixed; inset: 0; background: rgba(44, 36, 23, 0.45); z-index: 200; opacity: 0; pointer-events: none; transition: opacity var(--duration) var(--ease-smooth); }
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100vw); background: var(--color-bg); z-index: 201; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.45s var(--ease-smooth); box-shadow: -8px 0 32px rgba(44, 36, 23, 0.12); }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-drawer-head { display: flex; align-items: flex-start; justify-content: space-between; padding: var(--space-md); border-bottom: 0.5px solid var(--color-border); flex-shrink: 0; }
+    .cart-drawer-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; letter-spacing: 0.12em; color: var(--color-text); margin-top: 4px; }
+    .cart-close { background: none; border: none; cursor: pointer; color: var(--color-text-sub); padding: 4px; transition: color var(--duration) var(--ease-smooth); margin-top: 2px; }
+    .cart-close:hover { color: var(--color-accent); }
+    .cart-body { flex: 1; overflow-y: auto; padding: var(--space-md); }
+    .cart-body::-webkit-scrollbar { width: 4px; }
+    .cart-body::-webkit-scrollbar-track { background: transparent; }
+    .cart-body::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+    .cart-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--space-xl) var(--space-md); text-align: center; }
+    .cart-empty-icon { font-size: 2.5rem; margin-bottom: var(--space-sm); }
+    .cart-empty-text { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.12em; color: var(--color-text); }
+    .cart-empty-sub { font-family: var(--font-body); font-size: 0.8rem; font-weight: 300; color: var(--color-text-sub); margin-top: var(--space-xs); letter-spacing: 0.06em; }
+    .cart-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+    .cart-item { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: var(--space-sm); padding-bottom: var(--space-sm); border-bottom: 0.5px solid var(--color-border); }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-thumb { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .cart-item-info { min-width: 0; }
+    .cart-item-name { font-family: var(--font-display); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.1em; color: var(--color-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cart-item-price { font-family: var(--font-body); font-size: 0.75rem; color: var(--color-text-sub); margin-top: 2px; }
+    .cart-item-ctrl { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .qty-control { display: flex; align-items: center; border: 0.5px solid var(--color-border); }
+    .qty-btn { width: 26px; height: 26px; background: none; border: none; cursor: pointer; font-size: 0.85rem; color: var(--color-text-sub); display: flex; align-items: center; justify-content: center; transition: background var(--duration) var(--ease-smooth), color var(--duration) var(--ease-smooth); }
+    .qty-btn:hover { background: var(--color-surface); color: var(--color-accent); }
+    .qty-num { width: 30px; text-align: center; font-family: var(--font-body); font-size: 0.8rem; color: var(--color-text); border-left: 0.5px solid var(--color-border); border-right: 0.5px solid var(--color-border); line-height: 26px; }
+    .cart-item-remove { font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--color-text-sub); background: none; border: none; cursor: pointer; padding: 0; transition: color var(--duration) var(--ease-smooth); }
+    .cart-item-remove:hover { color: #c0392b; }
+    .cart-footer { padding: var(--space-md); border-top: 0.5px solid var(--color-border); flex-shrink: 0; display: flex; flex-direction: column; gap: var(--space-sm); }
+    .cart-subtotal { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-body); font-size: 0.85rem; color: var(--color-text-sub); letter-spacing: 0.06em; }
+    .cart-subtotal strong { font-family: var(--font-en); font-size: 1.1rem; color: var(--color-accent); font-weight: 400; }
+    .cart-checkout-btn { width: 100%; text-align: center; }
+    /* Checkout Panel */
+    .checkout-panel { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+    .checkout-order-summary { padding: var(--space-sm) var(--space-md); background: var(--color-surface); border-bottom: 0.5px solid var(--color-border); font-family: var(--font-body); font-size: 0.78rem; color: var(--color-text-sub); letter-spacing: 0.06em; flex-shrink: 0; line-height: 1.8; }
+    .checkout-order-summary strong { font-family: var(--font-en); font-size: 1rem; color: var(--color-accent); font-weight: 400; }
+    .checkout-form-body { flex: 1; overflow-y: auto; padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-md); }
+    .checkout-form-body::-webkit-scrollbar { width: 4px; }
+    .checkout-form-body::-webkit-scrollbar-thumb { background: var(--color-border); }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; color: var(--color-text); }
+    .form-required { color: var(--color-accent); margin-left: 2px; }
+    .form-input { font-family: var(--font-body); font-size: 0.875rem; color: var(--color-text); background: var(--color-bg); border: 0.5px solid var(--color-border); padding: 10px 14px; outline: none; transition: border-color var(--duration) var(--ease-smooth); letter-spacing: 0.04em; width: 100%; }
+    .form-input:focus { border-color: var(--color-accent); }
+    .form-input.error { border-color: #c0392b; }
+    .form-textarea { resize: vertical; min-height: 72px; line-height: 1.7; }
+    .payment-options { display: flex; gap: var(--space-md); }
+    .payment-option { display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: var(--font-body); font-size: 0.85rem; color: var(--color-text); letter-spacing: 0.06em; }
+    .payment-option input[type="radio"] { accent-color: var(--color-accent); width: 14px; height: 14px; cursor: pointer; }
+    .checkout-submit-btn { width: 100%; text-align: center; }
+    /* Order Done */
+    .order-done-panel { display: flex; flex-direction: column; align-items: center; padding: var(--space-lg) var(--space-md); gap: var(--space-sm); text-align: center; overflow-y: auto; }
+    .order-done-icon { font-size: 1.5rem; color: var(--color-accent); margin-bottom: var(--space-xs); }
+    .order-done-title { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.15em; color: var(--color-text); }
+    .order-done-sub { font-family: var(--font-body); font-size: 0.85rem; font-weight: 300; color: var(--color-text-sub); letter-spacing: 0.06em; line-height: 1.8; }
+    .order-done-summary { width: 100%; background: var(--color-surface); border: 0.5px solid var(--color-border); padding: var(--space-md); text-align: left; font-family: var(--font-body); font-size: 0.8rem; color: var(--color-text-sub); letter-spacing: 0.06em; line-height: 2; white-space: pre-wrap; word-break: break-all; }
+    .order-copy-btn { width: 100%; text-align: center; }
+    @media (max-width: 768px) {
+      .cart-drawer { width: 100vw; }
+      .payment-options { flex-direction: column; gap: var(--space-sm); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ NAV ══════════════ -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-ja">蔡記</span>
+        <span class="brand-sub">PEANUT CANDY</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">首頁</a></li>
+        <li><a href="#products">產品</a></li>
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#contact">聯絡</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="cart-trigger" id="cartTrigger" aria-label="購物車">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="nav-toggle" aria-label="選單">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"><div class="hero-texture"></div></div>
+      <div class="hero-inner container">
+        <div class="hero-content fade-in">
+          <p class="hero-label">Since 2002 · 桃園大溪和平老街</p>
+          <h1 class="hero-title">蔡記<br>麥芽花生糖</h1>
+          <div class="hero-divider"></div>
+          <p class="hero-slogan">大溪首創・飄香半世紀</p>
+          <p class="hero-desc fade-in fade-in-delay-1">手工現做・不黏牙・大溪老街人氣排隊伴手禮</p>
+          <div class="hero-actions fade-in fade-in-delay-2">
+            <a href="#products" class="btn btn-fill">查看產品</a>
+            <a href="#about" class="btn">品牌故事</a>
+          </div>
+        </div>
+        <div class="hero-badge fade-in fade-in-delay-1">
+          <span class="badge-main">現做</span>
+          <span class="badge-sub">現賣</span>
+        </div>
+      </div>
+      <a href="#products" class="hero-scroll" aria-label="往下捲動">
+        <span class="scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- ══════════════ BRAND STORY ══════════════ -->
+    <section class="about-story section" id="about-story">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-text">
+            <p class="section-label">Brand Story</p>
+            <h2 class="section-title">從廟口攤位<br>到老街名店</h2>
+            <div class="divider"></div>
+            <div class="story-paragraphs">
+              <p>早年蔡老闆平日上班，假日在廟口斜對面協助老父製作麥芽花生糖。為了傳承手藝、陪伴兒子成長，2002 年毅然辭去工作，帶著妻小在老街一角獨當一面。</p>
+              <p>平日更將麥芽花生糖的美味推廣至台北幾大市場。2007 年因應老街石板街道規劃，擁有了自己的店面，妻小從此不用跟著風吹日曬。</p>
+              <p>為了做出新鮮美味不黏牙的麥芽花生糖，蔡記始終堅持現做現賣，從早上開店就一直做到當天備料用完才休息。</p>
+            </div>
+          </div>
+          <div class="story-stats">
+            <div class="stat-item">
+              <span class="stat-num">2002</span>
+              <span class="stat-label">創立於大溪</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">20<span class="stat-unit">+</span></span>
+              <span class="stat-label">年手藝傳承</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num">6</span>
+              <span class="stat-label">種招牌產品</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-tag">電視報導</span>
+              <span class="stat-tag">排隊人氣</span>
+              <span class="stat-tag">大溪首創</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ PRODUCTS ══════════════ -->
+    <section class="products section" id="products">
+      <div class="container">
+        <div class="products-header">
+          <p class="section-label">Our Products</p>
+          <h2 class="section-title">招牌產品</h2>
+          <div class="divider"></div>
+          <p class="section-desc">每日現做現賣，堅持不用防腐劑，新鮮美味不黏牙</p>
+        </div>
+
+        <div class="products-grid">
+
+          <!-- 人氣商品 -->
+          <div class="product-card card-featured">
+            <div class="product-img-wrap">
+              <div class="product-img product-img--maltcandy"></div>
+              <div class="magnifier-lens"><div class="lens-content"></div></div>
+              <span class="badge-popular">人氣商品</span>
+            </div>
+            <div class="product-info">
+              <div>
+                <h3 class="product-name">麥芽花生糖</h3>
+                <p class="product-en">Malt Peanut Candy</p>
+                <p class="product-desc">大溪首創・飄香半世紀。現做現賣，酥脆不黏牙，是大溪和平老街最具代表性的伴手禮。</p>
+              </div>
+              <div class="product-footer">
+                <span class="product-price">NT$ <strong>140</strong> <em>元／盒</em></span>
+                <span class="product-tag">現做</span>
+                <button class="btn-add-cart" data-id="maltcandy" data-name="麥芽花生糖" data-price="140">加入購物車</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 花生糖 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <div class="product-img product-img--peanut"></div>
+              <div class="magnifier-lens"><div class="lens-content"></div></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">花生糖</h3>
+              <p class="product-en">Peanut Candy</p>
+              <p class="product-desc">古法製作，香氣濃郁，每口都是純正花生香。</p>
+              <div class="product-footer">
+                <span class="product-price">NT$ <strong>140</strong> <em>元／盒</em></span>
+                <button class="btn-add-cart" data-id="peanut" data-name="花生糖" data-price="140">加入購物車</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 貢糖 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <div class="product-img product-img--tribute"></div>
+              <div class="magnifier-lens"><div class="lens-content"></div></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">貢糖</h3>
+              <p class="product-en">Gong Tang</p>
+              <p class="product-desc">口感綿密細緻，入口即化，老少皆宜。</p>
+              <div class="product-footer">
+                <span class="product-price">NT$ <strong>140</strong> <em>元／盒</em></span>
+                <button class="btn-add-cart" data-id="tribute" data-name="貢糖" data-price="140">加入購物車</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 花生酥 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <div class="product-img product-img--peanutcrisp"></div>
+              <div class="magnifier-lens"><div class="lens-content"></div></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">花生酥</h3>
+              <p class="product-en">Peanut Crisp</p>
+              <p class="product-desc">顆粒飽滿，酥香可口，越嚼越香。</p>
+              <div class="product-footer">
+                <span class="product-price">NT$ <strong>140</strong> <em>元／盒</em></span>
+                <button class="btn-add-cart" data-id="peanutcrisp" data-name="花生酥" data-price="140">加入購物車</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 芝麻酥 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <div class="product-img product-img--sesamecrisp"></div>
+              <div class="magnifier-lens"><div class="lens-content"></div></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">芝麻酥</h3>
+              <p class="product-en">Sesame Crisp</p>
+              <p class="product-desc">黑芝麻香氣層次豐富，酥脆口感令人回味。</p>
+              <div class="product-footer">
+                <span class="product-price">NT$ <strong>140</strong> <em>元／盒</em></span>
+                <button class="btn-add-cart" data-id="sesamecrisp" data-name="芝麻酥" data-price="140">加入購物車</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 芝麻糖 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <div class="product-img product-img--sesamecandy"></div>
+              <div class="magnifier-lens"><div class="lens-content"></div></div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">芝麻糖</h3>
+              <p class="product-en">Sesame Candy</p>
+              <p class="product-desc">芝麻濃香，甜而不膩，傳統古早味點心。</p>
+              <div class="product-footer">
+                <span class="product-price">NT$ <strong>140</strong> <em>元／盒</em></span>
+                <button class="btn-add-cart" data-id="sesamecandy" data-name="芝麻糖" data-price="140">加入購物車</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="products-note">
+          <span class="note-icon">✦</span>
+          <p>所有產品均為現做現賣，每日數量有限，售完為止。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ ABOUT ══════════════ -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about-header">
+          <p class="section-label">About Us</p>
+          <h2 class="section-title">關於蔡記</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="about-grid">
+          <div class="about-story">
+            <p class="about-lead">大溪首創・飄香半世紀</p>
+            <p class="about-p">早年蔡老闆平日上班，假日在廟口的斜對面協助老父製作麥芽花生糖。為了傳承手藝，也為了陪伴兒子成長，2002 年毅然辭去工作，假日帶著妻小於老街一角獨當一面，平日又將麥芽花生糖的美味推廣至台北幾大市場。</p>
+            <p class="about-p">2007 年因應老街石板街道的規劃，擁有了自己的店面，妻小因此不用跟著風吹日曬。</p>
+            <p class="about-p">為了做出新鮮美味不黏牙的麥芽花生糖，蔡記始終堅持現做現賣的方式，從早上開店就一直做到當天備料用完才休息。但只要想到每個人吃了自己做的麥芽花生糖後臉上滿足的表情，就覺得幸福與成就感，也就有了繼續努力拼下去的動力。</p>
+            <div class="about-tags">
+              <span class="about-tag">電視報導美食</span>
+              <span class="about-tag">排隊人氣名店</span>
+              <span class="about-tag">大溪老街必吃</span>
+              <span class="about-tag">古早味點心</span>
+              <span class="about-tag">大溪伴手禮推薦</span>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-year">早年</span>
+                <p class="tl-text">廟口協助老父製作麥芽花生糖，手藝與熱情從此扎根。</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-dot--accent"></div>
+              <div class="tl-content">
+                <span class="tl-year">2002</span>
+                <p class="tl-text">毅然辭去工作，帶著妻小在大溪老街一角正式創業。</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-content">
+                <span class="tl-year">2002–2007</span>
+                <p class="tl-text">將麥芽花生糖美味推廣至台北幾大市場，口碑遠傳。</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-dot--accent"></div>
+              <div class="tl-content">
+                <span class="tl-year">2007</span>
+                <p class="tl-text">因應老街石板街道規劃，正式擁有自己的店面。</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-dot--accent"></div>
+              <div class="tl-content">
+                <span class="tl-year">現在</span>
+                <p class="tl-text">電視報導、排隊人氣，成為大溪和平老街最具代表性的伴手禮名店。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="craft-grid">
+          <div class="craft-item">
+            <div class="craft-icon">層</div>
+            <h3 class="craft-title">千層酥工法</h3>
+            <p class="craft-desc">採用大量花生粉與麥芽糖，經反覆揉捏與桿壓，呈現酥脆外層與柔軟麥芽糖交織的獨特千層口感。</p>
+          </div>
+          <div class="craft-item">
+            <div class="craft-icon">鮮</div>
+            <h3 class="craft-title">現做現賣</h3>
+            <p class="craft-desc">堅持當日製作當日販售，3 天內食用最佳，越早品嚐越能感受濃郁花生香氣。</p>
+          </div>
+          <div class="craft-item">
+            <div class="craft-icon">純</div>
+            <h3 class="craft-title">純粹原料</h3>
+            <p class="craft-desc">不添加防腐劑，嚴選優質花生與麥芽，甜而不膩、不黏牙，常溫可存放一週，冷凍可保存一個月。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACT ══════════════ -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="contact-header">
+          <p class="section-label">Contact & Order</p>
+          <h2 class="section-title">訂購與聯絡</h2>
+          <div class="divider"></div>
+          <p class="section-desc">歡迎親臨大溪和平老街，或透過以下方式與我們聯繫</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="info-block">
+              <span class="info-label">地址</span>
+              <a class="info-value info-link" href="https://maps.google.com/?q=桃園市大溪區和平路57號" target="_blank" rel="noopener">桃園市大溪區和平路 57 號</a>
+            </div>
+            <div class="info-block">
+              <span class="info-label">Email</span>
+              <a class="info-value info-link" href="mailto:tasi.peanutcandy@gmail.com">tasi.peanutcandy@gmail.com</a>
+            </div>
+            <div class="info-block">
+              <span class="info-label">營業時間</span>
+              <span class="info-value">現做現賣，售完為止<br><small>詳細時間請洽 FB / IG</small></span>
+            </div>
+            <div class="info-block">
+              <span class="info-label">訂購方式</span>
+              <span class="info-value">FB 私訊 / 現場購買 / 線上購物車</span>
+            </div>
+            <div class="social-row">
+              <a class="social-btn" href="https://www.facebook.com/tsai.peanutcandy" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                Facebook
+              </a>
+              <a class="social-btn" href="https://www.instagram.com/tsai.peanut.candy" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+          <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.4!2d121.2886!3d24.8794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346820a0b0b0b0b0%3A0x0!2z5qGD5ZyL5biC5aSn6aBv5Y2A5ZKM5bmz5Lq657Sa5Y2B!5e0!3m2!1szh-TW!2stw!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="蔡記麥芽花生糖地圖位置"></iframe>
+          </div>
+        </div>
+        <div class="contact-notice">
+          <div class="notice-item">
+            <span class="notice-icon">✦</span>
+            <span>本店採現做現賣，每日數量有限，售完為止，敬請見諒。</span>
+          </div>
+          <div class="notice-item">
+            <span class="notice-icon">✦</span>
+            <span>如需大量訂購或團購，請提前透過 Facebook 私訊洽詢。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <span class="brand-ja">蔡記麥芽花生糖</span>
+      <span class="brand-sub">TSAI'S MALT PEANUT CANDY · DAXI OLD STREET</span>
+    </div>
+    <p class="footer-copy">© 2024 蔡記麥芽花生糖. All rights reserved.</p>
+    <p class="footer-tagline">手工製作・用心傳遞每一口甜蜜</p>
+  </footer>
+
+  <!-- ══════════════ CART DRAWER ══════════════ -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-label="購物車">
+
+    <!-- 購物車 View -->
+    <div class="cart-drawer-head">
+      <div>
+        <p class="section-label" style="margin:0">Shopping Cart</p>
+        <h2 class="cart-drawer-title">購物車</h2>
+      </div>
+      <button class="cart-close" id="cartClose" aria-label="關閉">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <p class="cart-empty-icon">🛒</p>
+        <p class="cart-empty-text">購物車是空的</p>
+        <p class="cart-empty-sub">請至產品區加入商品</p>
+      </div>
+      <ul class="cart-list" id="cartList"></ul>
+    </div>
+
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-subtotal">
+        <span>共 <strong id="cartCount">0</strong> 盒</span>
+        <span>總計 NT$ <strong id="cartTotal">0</strong></span>
+      </div>
+      <button class="btn btn-fill cart-checkout-btn" id="cartCheckoutBtn">前往結帳</button>
+    </div>
+
+    <!-- 結帳 View -->
+    <div class="checkout-panel" id="checkoutPanel" style="display:none">
+      <div class="cart-drawer-head">
+        <div>
+          <p class="section-label" style="margin:0">Checkout</p>
+          <h2 class="cart-drawer-title">填寫訂購資料</h2>
+        </div>
+        <button class="cart-close" id="checkoutBack" aria-label="返回購物車">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="checkout-order-summary" id="checkoutSummaryBlock"></div>
+      <div class="checkout-form-body">
+        <div class="form-group">
+          <label class="form-label">姓名 <span class="form-required">*</span></label>
+          <input class="form-input" id="cfName" type="text" placeholder="請輸入姓名" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">聯絡電話 <span class="form-required">*</span></label>
+          <input class="form-input" id="cfPhone" type="tel" placeholder="0912-345-678" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label">收件地址 <span class="form-required">*</span></label>
+          <input class="form-input" id="cfAddress" type="text" placeholder="縣市、鄉鎮、路段、門號" autocomplete="street-address">
+        </div>
+        <div class="form-group">
+          <label class="form-label">備註（選填）</label>
+          <textarea class="form-input form-textarea" id="cfNote" placeholder="口味偏好、到貨時間等"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">付款方式 <span class="form-required">*</span></label>
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="credit" checked>
+              <span>信用卡</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="transfer">
+              <span>銀行匯款</span>
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-fill checkout-submit-btn" id="checkoutSubmitBtn">確認送出訂單</button>
+      </div>
+    </div>
+
+    <!-- 完成 View -->
+    <div class="order-done-panel" id="orderDonePanel" style="display:none">
+      <div class="order-done-icon">✦</div>
+      <h2 class="order-done-title">訂單已送出</h2>
+      <p class="order-done-sub">感謝您的訂購，我們將盡快與您聯絡確認。</p>
+      <div class="order-done-summary" id="orderDoneSummary"></div>
+      <button class="btn order-copy-btn" id="orderCopyBtn">複製訂單內容</button>
+      <button class="btn btn-fill" id="orderDoneCloseBtn" style="margin-top:0.5rem;width:100%">繼續購物</button>
+    </div>
+
+  </aside>
+
+  <script>
+    /* ════════ 放大鏡 ════════ */
+    document.querySelectorAll('.product-img-wrap').forEach(wrap => {
+      const lens = wrap.querySelector('.magnifier-lens');
+      const lensContent = wrap.querySelector('.lens-content');
+      const img = wrap.querySelector('.product-img');
+      if (!lens || !img) return;
+      const computed = getComputedStyle(img);
+      lensContent.style.background = computed.backgroundColor;
+      const pseudo = getComputedStyle(img, '::after').content;
+      if (pseudo && pseudo !== 'none' && pseudo !== '""') {
+        lensContent.textContent = pseudo.replace(/"/g, '');
+      }
+      wrap.addEventListener('mouseenter', () => lens.classList.add('active'));
+      wrap.addEventListener('mouseleave', () => lens.classList.remove('active'));
+      wrap.addEventListener('mousemove', e => {
+        const rect = wrap.getBoundingClientRect();
+        lens.style.left = (e.clientX - rect.left) + 'px';
+        lens.style.top  = (e.clientY - rect.top) + 'px';
+      });
+    });
+
+    /* ════════ 購物車系統 ════════ */
+    (function () {
+      const PRODUCT_THUMB = {
+        maltcandy:   { bg: '#EDD9B8', emoji: '🥜' },
+        peanut:      { bg: '#E8CFA0', emoji: '🍯' },
+        tribute:     { bg: '#E5E0D6', emoji: '🍡' },
+        peanutcrisp: { bg: '#E0C89A', emoji: '🫘' },
+        sesamecrisp: { bg: '#C8C4BB', emoji: '⬛' },
+        sesamecandy: { bg: '#B8B4AC', emoji: '🖤' },
+      };
+
+      let cart = loadCart();
+
+      const trigger      = document.getElementById('cartTrigger');
+      const badge        = document.getElementById('cartBadge');
+      const overlay      = document.getElementById('cartOverlay');
+      const drawer       = document.getElementById('cartDrawer');
+      const closeBtn     = document.getElementById('cartClose');
+      const cartBody     = document.getElementById('cartBody');
+      const cartEmpty    = document.getElementById('cartEmpty');
+      const cartList     = document.getElementById('cartList');
+      const cartFooter   = document.getElementById('cartFooter');
+      const cartCount    = document.getElementById('cartCount');
+      const cartTotal    = document.getElementById('cartTotal');
+      const checkoutBtn  = document.getElementById('cartCheckoutBtn');
+      const checkoutPanel   = document.getElementById('checkoutPanel');
+      const checkoutBack    = document.getElementById('checkoutBack');
+      const checkoutSummary = document.getElementById('checkoutSummaryBlock');
+      const submitBtn       = document.getElementById('checkoutSubmitBtn');
+      const orderDonePanel  = document.getElementById('orderDonePanel');
+      const orderDoneSummary= document.getElementById('orderDoneSummary');
+      const orderCopyBtn    = document.getElementById('orderCopyBtn');
+      const orderDoneClose  = document.getElementById('orderDoneCloseBtn');
+
+      function openDrawer()  { overlay.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow = 'hidden'; showCartView(); }
+      function closeDrawer() { overlay.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }
+
+      function showCartView() {
+        cartBody.style.display          = 'block';
+        cartFooter.style.display        = cart.length ? 'flex' : 'none';
+        checkoutPanel.style.display     = 'none';
+        orderDonePanel.style.display    = 'none';
+      }
+      function showCheckoutView() {
+        cartBody.style.display          = 'none';
+        cartFooter.style.display        = 'none';
+        checkoutPanel.style.display     = 'flex';
+        orderDonePanel.style.display    = 'none';
+        renderCheckoutSummary();
+      }
+      function showDoneView(txt) {
+        checkoutPanel.style.display     = 'none';
+        orderDonePanel.style.display    = 'flex';
+        orderDoneSummary.textContent    = txt;
+      }
+
+      trigger.addEventListener('click', openDrawer);
+      closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+      checkoutBtn.addEventListener('click', showCheckoutView);
+      checkoutBack.addEventListener('click', showCartView);
+      orderDoneClose.addEventListener('click', () => { cart = []; saveCart(); renderCart(); closeDrawer(); });
+
+      document.querySelectorAll('.btn-add-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          addToCart(btn.dataset.id, btn.dataset.name, parseInt(btn.dataset.price, 10));
+          btn.textContent = '✓ 已加入';
+          btn.classList.add('added');
+          setTimeout(() => { btn.textContent = '加入購物車'; btn.classList.remove('added'); }, 1500);
+        });
+      });
+
+      function addToCart(id, name, price) {
+        const exist = cart.find(i => i.id === id);
+        if (exist) exist.qty += 1;
+        else cart.push({ id, name, price, qty: 1 });
+        saveCart(); renderCart(); bumpBadge();
+      }
+
+      function renderCart() {
+        cartList.innerHTML = '';
+        const empty = cart.length === 0;
+        cartEmpty.style.display  = empty ? 'flex' : 'none';
+        cartList.style.display   = empty ? 'none' : 'flex';
+        cartFooter.style.display = empty ? 'none' : 'flex';
+
+        cart.forEach(item => {
+          const t = PRODUCT_THUMB[item.id] || { bg: '#EDD9B8', emoji: '🎁' };
+          const li = document.createElement('li');
+          li.className = 'cart-item';
+          li.innerHTML = `
+            <div class="cart-item-thumb" style="background:${t.bg}">${t.emoji}</div>
+            <div class="cart-item-info">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">NT$ ${item.price} 元／盒</div>
+            </div>
+            <div class="cart-item-ctrl">
+              <div class="qty-control">
+                <button class="qty-btn qty-minus" data-id="${item.id}">−</button>
+                <span class="qty-num">${item.qty}</span>
+                <button class="qty-btn qty-plus" data-id="${item.id}">＋</button>
+              </div>
+              <button class="cart-item-remove" data-id="${item.id}">刪除</button>
+            </div>`;
+          cartList.appendChild(li);
+        });
+
+        cartList.querySelectorAll('.qty-minus').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.id, -1)));
+        cartList.querySelectorAll('.qty-plus').forEach(b  => b.addEventListener('click', () => changeQty(b.dataset.id, +1)));
+        cartList.querySelectorAll('.cart-item-remove').forEach(b => b.addEventListener('click', () => removeItem(b.dataset.id)));
+
+        const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        const count = cart.reduce((s, i) => s + i.qty, 0);
+        cartCount.textContent = count;
+        cartTotal.textContent = total.toLocaleString();
+        badge.textContent     = count;
+      }
+
+      function changeQty(id, delta) {
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+        saveCart(); renderCart();
+      }
+      function removeItem(id) { cart = cart.filter(i => i.id !== id); saveCart(); renderCart(); }
+
+      function renderCheckoutSummary() {
+        const lines = cart.map(i => `${i.name} × ${i.qty} 盒`).join('　');
+        const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        checkoutSummary.innerHTML = `${lines}　｜　總計 NT$ <strong>${total.toLocaleString()}</strong> 元`;
+      }
+
+      submitBtn.addEventListener('click', () => {
+        const name    = document.getElementById('cfName');
+        const phone   = document.getElementById('cfPhone');
+        const address = document.getElementById('cfAddress');
+        const note    = document.getElementById('cfNote');
+        const payment = document.querySelector('input[name="payment"]:checked');
+        let valid = true;
+        [name, phone, address].forEach(f => { f.classList.remove('error'); if (!f.value.trim()) { f.classList.add('error'); valid = false; } });
+        if (!valid) return;
+        const payLabel  = payment.value === 'credit' ? '信用卡' : '銀行匯款';
+        const total     = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        const itemsText = cart.map(i => `  ${i.name} × ${i.qty} 盒  NT$ ${i.price * i.qty} 元`).join('\n');
+        const summaryText = [
+          '═══════════════════',
+          '【蔡記麥芽花生糖 訂單】',
+          '═══════════════════',
+          `姓名：${name.value.trim()}`,
+          `電話：${phone.value.trim()}`,
+          `地址：${address.value.trim()}`,
+          `備註：${note.value.trim() || '無'}`,
+          `付款：${payLabel}`,
+          '───────────────────',
+          '訂購商品：',
+          itemsText,
+          '───────────────────',
+          `總計：NT$ ${total.toLocaleString()} 元`,
+          '═══════════════════',
+        ].join('\n');
+        showDoneView(summaryText);
+      });
+
+      orderCopyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(orderDoneSummary.textContent).then(() => {
+          orderCopyBtn.textContent = '✓ 已複製！';
+          setTimeout(() => { orderCopyBtn.textContent = '複製訂單內容'; }, 2000);
+        });
+      });
+
+      function bumpBadge() { badge.classList.remove('bump'); void badge.offsetWidth; badge.classList.add('bump'); }
+      function saveCart() { try { localStorage.setItem('pcCart', JSON.stringify(cart)); } catch(_) {} }
+      function loadCart() { try { const r = localStorage.getItem('pcCart'); return r ? JSON.parse(r) : []; } catch(_) { return []; } }
+
+      renderCart();
+    })();
+  </script>
+</body>
+</html>
